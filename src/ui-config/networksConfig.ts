@@ -1,4 +1,5 @@
 import { ChainId } from '@aave/contract-helpers';
+import { defineChain } from 'viem';
 import {
   arbitrum,
   arbitrumSepolia,
@@ -455,6 +456,47 @@ export const prodNetworkConfig: Record<string, BaseNetworkConfig> = {
     explorerLink: 'https://explorer.inkonchain.com/',
     networkLogoPath: '/icons/networks/ink.svg',
     wagmiChain: ink,
+  },
+  [369]: {
+    name: 'Pulsechain',
+    publicJsonRPCUrl: ['https://rpc-pulsechain.g4mm4.io'],
+    // publicJsonRPCWSUrl: 'wss://rpc-pulsechain.g4mm4.io',
+    baseUniswapAdapter: '0x0',
+    baseAssetSymbol: 'PLS',
+    wrappedBaseAssetSymbol: 'WPLS',
+    baseAssetDecimals: 18,
+    explorerLink:
+      'https://scan.mypinata.cloud/ipfs/bafybeih3olry3is4e4lzm7rus5l3h6zrphcal5a7ayfkhzm5oivjro2cp4/#',
+    // isTestnet: true,
+    networkLogoPath: '/icons/networks/pulse.jpg',
+    wagmiChain: defineChain({
+      id: 369,
+      name: 'PulseChain',
+      nativeCurrency: { name: 'Pulse', symbol: 'PLS', decimals: 18 },
+      testnet: true,
+      rpcUrls: {
+        default: {
+          http: ['https://rpc-pulsechain.g4mm4.io'],
+          webSocket: ['wss://rpc-pulsechain.g4mm4.io'],
+        },
+      },
+      blockExplorers: {
+        default: {
+          name: 'PulseScan',
+          url: 'https://scan.mypinata.cloud/ipfs/bafybeih3olry3is4e4lzm7rus5l3h6zrphcal5a7ayfkhzm5oivjro2cp4/#',
+          apiUrl: 'https://api.scan.pulsechain.com/api',
+        },
+      },
+      contracts: {
+        ensRegistry: {
+          address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+        },
+        multicall3: {
+          address: '0xca11bde05977b3631167028862be2a173976ca11',
+          blockCreated: 14353601,
+        },
+      },
+    }),
   },
 };
 

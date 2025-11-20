@@ -64,6 +64,7 @@ export const usePoolsFormattedReserves = (
     const poolReservesIncentivesQuery = poolsReservesIncentivesQueries[index];
     const poolEModesQuery = poolsEModesQueries[index];
     const networkConfig = getNetworkConfig(marketData.chainId);
+
     const selector = (
       reservesData: ReservesDataHumanized,
       incentivesData: ReservesIncentiveDataHumanized[],

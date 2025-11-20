@@ -38,7 +38,7 @@ export type MarketDataType = {
   marketTitle: string;
   market: CustomMarket;
   // the network the market operates on
-  chainId: ChainId;
+  chainId: ChainId | number;
   enabledFeatures?: {
     liquiditySwap?: boolean;
     staking?: boolean;
@@ -78,6 +78,7 @@ export type MarketDataType = {
   };
 };
 export enum CustomMarket {
+  proto_pulsechain_v3 = 'proto_pulsechain_v3',
   // v3 test networks, all v3.0.1
   proto_arbitrum_sepolia_v3 = 'proto_arbitrum_sepolia_v3',
   proto_fuji_v3 = 'proto_fuji_v3',
@@ -870,6 +871,27 @@ export const marketsData: {
       UI_POOL_DATA_PROVIDER: AaveV3Metis.UI_POOL_DATA_PROVIDER,
       UI_INCENTIVE_DATA_PROVIDER: AaveV3Metis.UI_INCENTIVE_DATA_PROVIDER,
       COLLECTOR: AaveV3Metis.COLLECTOR,
+    },
+  },
+  [CustomMarket.proto_pulsechain_v3]: {
+    marketTitle: 'Pulsechain Main',
+    market: CustomMarket.proto_pulsechain_v3,
+    v3: true,
+    permitDisabled: true,
+    chainId: 369,
+    enabledFeatures: {
+      incentives: true,
+    },
+    addresses: {
+      LENDING_POOL_ADDRESS_PROVIDER: '0x905374a4E76BB0Efeee8c91C0Ece99b119B6AfB5',
+      LENDING_POOL: '0x9C893A35F876B05CC07c9f3f5C4197a9c55f0Ca7',
+      WETH_GATEWAY: '0xB8c6F4f9145C0CE5fc98c308A27cF7Fa4e7Fbe88',
+      FAUCET: '0x2933EACC8368F0702f8004c5a4A5C6ddAe75629a',
+      WALLET_BALANCE_PROVIDER: '0xd528232e8F16FEdEEf58f41F11CDe0DEBEAf2560',
+      UI_POOL_DATA_PROVIDER: '0xbC077052Ba304c7C336D1df4A290bb83814339e0',
+      UI_INCENTIVE_DATA_PROVIDER: '0x611c756b16d514bEfaeCA8AF7E7d8d5520208007',
+      L2_ENCODER: '0xC61936Ad3DE8419733b6fA2cAdcb69767Ee87bFD',
+      GHO_TOKEN_ADDRESS: '0xb13Cfa6f8B2Eed2C37fB00fF0c1A59807C585810',
     },
   },
 } as const;

@@ -2,7 +2,6 @@ import {
   EmodeDataHumanized,
   LegacyUiPoolDataProvider,
   ReservesDataHumanized,
-  UiPoolDataProvider,
   UserReserveDataHumanized,
 } from '@aave/contract-helpers';
 import { Provider } from '@ethersproject/providers';
@@ -26,7 +25,8 @@ export class UiPoolService {
         chainId: marketData.chainId,
       });
     } else {
-      return new UiPoolDataProvider({
+      return new LegacyUiPoolDataProvider({
+        // return new UiPoolDataProvider({
         uiPoolDataProviderAddress: marketData.addresses.UI_POOL_DATA_PROVIDER as string,
         provider,
         chainId: marketData.chainId,

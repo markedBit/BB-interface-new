@@ -2,6 +2,7 @@ import {
   EmodeDataHumanized,
   LegacyUiPoolDataProvider,
   ReservesDataHumanized,
+  UiPoolDataProvider,
   UserReserveDataHumanized,
 } from '@aave/contract-helpers';
 import { Provider } from '@ethersproject/providers';
@@ -25,8 +26,7 @@ export class UiPoolService {
         chainId: marketData.chainId,
       });
     } else {
-      return new LegacyUiPoolDataProvider({
-        // return new UiPoolDataProvider({
+      return new UiPoolDataProvider({
         uiPoolDataProviderAddress: marketData.addresses.UI_POOL_DATA_PROVIDER as string,
         provider,
         chainId: marketData.chainId,
@@ -40,6 +40,9 @@ export class UiPoolService {
       marketData.market === CustomMarket.proto_sepolia_horizon_v3
     ) {
       return false;
+    }
+    if (marketData.market === CustomMarket.proto_pulsechain_v3) {
+      return true;
     }
 
     if (ENABLE_TESTNET || !marketData.v3) {
